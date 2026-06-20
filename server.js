@@ -132,10 +132,10 @@ app.get('/api/export-pdf', async (req, res) => {
 
     const doc = new PDFDocument({ margin: 50 });
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=StreetFeast_SFBB_Log.pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=Casa Mia_SFBB_Log.pdf');
     doc.pipe(res);
 
-    doc.fontSize(22).font('Helvetica-Bold').text('Street Feast SFBB Compliance Log', { align: 'center' });
+    doc.fontSize(22).font('Helvetica-Bold').text('Casa Mia SFBB Compliance Log', { align: 'center' });
     doc.fontSize(12).font('Helvetica').text('Official EHO Export', { align: 'center' });
     doc.moveDown(1);
     doc.fontSize(10).font('Helvetica-Oblique').text('LEGAL COMPLIANCE STATEMENT: To comply with Food Standards Agency (FSA) regulations, this digital diary utilises an append-only database structure. All temperatures, daily checks, and reviews are permanently timestamped at the point of entry and cannot be amended, backdated, or deleted by management or staff.', { align: 'center', width: 450, continued: false });
@@ -168,9 +168,9 @@ app.get('/api/export-allergen-pdf', async (req, res) => {
     const { data: dishes } = await supabase.from('allergens_matrix').select('*').order('dish_name', { ascending: true });
     const doc = new PDFDocument({ margin: 30, size: 'A4', layout: 'landscape' });
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=StreetFeast_Allergens.pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=Casa Mia_Allergens.pdf');
     doc.pipe(res);
-    doc.fontSize(18).font('Helvetica-Bold').text('DISHES AND THEIR ALLERGEN CONTENT - Street Feast', { align: 'left' });
+    doc.fontSize(18).font('Helvetica-Bold').text('DISHES AND THEIR ALLERGEN CONTENT - Casa Mia', { align: 'left' });
     doc.moveDown(2);
     if(dishes) { dishes.forEach(dish => { doc.fontSize(10).font('Helvetica').text(`• ${dish.dish_name}`); }); } // Simplified for code length
     doc.end();
@@ -180,8 +180,8 @@ app.get('/api/export-allergen-pdf', async (req, res) => {
 app.get('/api/export-risk-pdf', async (req, res) => {
     const doc = new PDFDocument({ margin: 30, size: 'A4', layout: 'landscape' });
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=StreetFeast_Risks.pdf');
-    doc.pipe(res); doc.fontSize(18).text('Risk Assessment Template - Street Feast'); doc.end();
+    res.setHeader('Content-Disposition', 'attachment; filename=Casa Mia_Risks.pdf');
+    doc.pipe(res); doc.fontSize(18).text('Risk Assessment Template - Casa Mia'); doc.end();
 });
 
 // 4. NEW: Documents PDF Export
@@ -190,10 +190,10 @@ app.get('/api/export-docs-pdf', async (req, res) => {
 
     const doc = new PDFDocument({ margin: 50 });
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=StreetFeast_Certificates.pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=Casa Mia_Certificates.pdf');
     doc.pipe(res);
 
-    doc.fontSize(22).font('Helvetica-Bold').text('Street Feast Compliance Certificates', { align: 'center' });
+    doc.fontSize(22).font('Helvetica-Bold').text('Casa Mia Compliance Certificates', { align: 'center' });
     doc.moveDown(2);
 
     if (docs && docs.length > 0) {
