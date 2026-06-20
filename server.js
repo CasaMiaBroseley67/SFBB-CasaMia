@@ -56,6 +56,12 @@ app.post('/api/cleaning', async (req, res) => {
     res.json(data);
 });
 
+// ADD THIS NEW DELETE ROUTE:
+app.delete('/api/cleaning/:id', async (req, res) => {
+    await supabase.from('cleaning_schedule').delete().eq('id', req.params.id);
+    res.json({ success: true });
+});
+
 // --- ALLERGEN MATRIX ---
 app.get('/api/allergens', async (req, res) => {
     const { data } = await supabase.from('allergens_matrix').select('*').order('dish_name', { ascending: true });
